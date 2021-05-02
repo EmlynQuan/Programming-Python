@@ -39,8 +39,30 @@ def kthSmallest(matrix, k):
     '''
     优化版本 二分查找
     '''
+    # 最小值和最大值
+    n = len(matrix)
+    left = matrix[0][0]
+    right = matrix[-1][-1]
 
+    while left < right:
+        mid = (left + right) // 2
+        if checkCount(mid, n, matrix, k):
+            right = mid
+        else:
+            left = mid + 1
+    return left
 
+def checkCount(mid, n, matrix, k):
+    i, j = n - 1, 0
+    num = 0
+    # 从左下角开始向右向上找
+    while i >= 0 and j < n:
+        if matrix[i][j] <= mid:
+            num += i + 1
+            j += 1
+        else:
+            i -= 1
+    return num >= k
 
 
 if __name__ == "__main__":
