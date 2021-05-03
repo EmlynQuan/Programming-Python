@@ -5,7 +5,6 @@ class ListNode(object):
         self.val = val
         self.next = next
 
-
 def sortList(head):
     '''
     对链表排序
