@@ -8,7 +8,6 @@ class ListNode(object):
 
 
 
-
 def reverseBetween(head, left, right):
     pos, preTail, revHead, nextHead = head, head, head, head
     counter = 0
