@@ -1,16 +1,19 @@
 # coding=utf-8
 
 def decode(encoded):
+    # 首先求第一个元素
+    total, odd = 0, 0
+    n = len(encoded)
+    for i in range(1, n+2):
+        total ^= i
 
-    n = len(encoded) + 1
-    for i in range(1, n+1):
-        prem = [i]
-        for j in range(n-1):
-            temp = encoded[j] ^ prem[-1]
-            if temp in prem or temp <= 0 or temp > n:
-                break
-            else:
-                prem.append(temp)
+    for i in range(1, n, 2):
+        odd ^= encoded[i]
 
-        if len(prem) == n:
-            return prem
+    ret = []
+    ret.append(total^odd)
+
+    for i in range(n):
+        ret.append(ret[-1]^encoded[i])
+
+    return ret
