@@ -6,12 +6,11 @@ def findClosedNumbers(num):
     :rtype: List[int]
     """
     upper,lower = num, num
-    memo = []
-    while upper > 0:
-        memo.append(upper % 2)
-        upper = upper >> 1
-    # 从低位开始遍历
-    for i in range(len(memo)):
+    temp = num
+    value = []
+    for k in range(30, -1, -1):
+        value.append(bit = (temp >> 1) & 1)
+
 
 
     return [upper, lower]
