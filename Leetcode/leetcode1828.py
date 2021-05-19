@@ -6,7 +6,6 @@ def countPoints(points, queries):
     :type queries: List[List[int]]
     :rtype: List[int]
     """
-
     strList = []
     for p in points:
         strList.append(str(p[0]) + "," + str(p[1]))
@@ -14,7 +13,6 @@ def countPoints(points, queries):
     # 构建字典
     myDict = collections.Counter(strList)
     ret = []
-    x,y,r,ans = 0,0,0,0
     # 遍历查询
     for query in queries:
         ans = 0
