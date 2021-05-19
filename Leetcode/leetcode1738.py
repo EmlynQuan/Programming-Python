@@ -12,10 +12,6 @@ def kthLargestValue(matrix, k):
 
     for i in range(1,m+1):
         for j in range(1,n+1):
-            # print dpPrefix[i-1][j]
-            # print dpPrefix[i][j-1]
-            # print dpPrefix[i-1][j-1]
-            # print matrix[i-1][j-1]
             dpPrefix[i][j] = dpPrefix[i-1][j] ^ dpPrefix[i][j-1] ^ dpPrefix[i-1][j-1] ^ matrix[i-1][j-1]
 
     dpPrefix = sum(dpPrefix, [])
