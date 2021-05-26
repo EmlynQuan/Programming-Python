@@ -5,41 +5,25 @@ def reverseParentheses(s):
     :type s: str
     :rtype: str
     """
-    length = len(s.replace("(","").replace(")",""))
-    ret = [0 for _ in range(length)]
-    posL, posR = 0, length-1
+    myStack = []
+    pos = 0
+    while pos < len(s):
+        # 不是右括号就入栈
+        if s[pos] != ")":
+            myStack.append(s[pos])
+            pos += 1
+        # 遇到右括号就出栈
+        elif s[pos] == ")":
+            temp = []
+            while myStack and myStack[-1] != "(":
+                temp.append(myStack.pop(-1))
+            myStack.pop()
+            myStack += temp
+            pos += 1
 
-    left, right = 0, len(s)-1
-    flag = False
-    while left < right:
-        # 尚未开始括号 不需要翻转的
-        if flag == False:
-            while s[left] != "(":
-                ret[posL] = s[left]
-                left += 1
-                posL += 1
-            while s[left] == "(":
-                left += 1
-            while s[right] != ")":
-                ret[posR] = s[right]
-                right -= 1
-                posR -= 1
-            while s[right] == ")":
-                right -= 1
-            flag = True
-        # 已经开始需要翻转了
-        else:
-            while s[left] != "(":
-                ret[posR] = s[left]
-                left += 1
-                posR -= 1
-            while s[left] == "(":
-                left += 1
-            while s[right] != ")":
-                ret[posL] = s[right]
-                right -= 1
-                posL += 1
-            while s[right] == ")":
-                right -= 1
+    return "".join(myStack)
 
-    return "".join(ret)
+
+if __name__ == "__main__":
+    s = "(ed(et(oc))el)"
+    print reverseParentheses(s)
