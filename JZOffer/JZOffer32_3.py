@@ -16,9 +16,11 @@ def levelOrder(root):
         return []
     ret = [[]]
     queue = [root]
-    counter, nextCounter = 1,0
+    counter, nextCounter = 1, 0
     while queue:
+        # 从右到左
         temp = queue.pop(0)
+
         ret[-1].append(temp.val)
         counter -= 1
 
@@ -33,6 +35,16 @@ def levelOrder(root):
                 ret.append([])
             counter = nextCounter
             nextCounter = 0
+
+    for i in range(len(ret)):
+        if i % 2 == 1:
+            left, right = 0, len(ret[i])-1
+            while left < right:
+                temp = ret[i][left]
+                ret[i][left] = ret[i][right]
+                ret[i][right] = temp
+                left += 1
+                right -= 1
     return ret
 
 
